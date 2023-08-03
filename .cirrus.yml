@@ -1,7 +1,7 @@
 container:
   image: archlinux:latest
-  cpu: 16
-  memory: 64G
+  cpu: 8
+  memory: 32G
 
 build_task:
   preparation_script:
