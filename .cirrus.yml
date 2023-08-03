@@ -6,13 +6,14 @@ container:
 build_task:
   preparation_script:
     - echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-    - pacman -Suy --noconfirm base-devel git sudo qemu-base
+    - pacman -Suy --noconfirm base-devel git sudo 
     - useradd -m -g users -s /bin/bash user
     - echo "user ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
-    - git clone https://aur.archlinux.org/halium-devel.git
-    - chmod 777 halium-devel
-    - cd halium-devel/
+    - git clone https://aur.archlinux.org/yay-bin.git
+    - chmod 777 yay-bin
+    - cd yay-bin
     - su user -c "makepkg --noconfirm -si"
+    - su user -c "yay -S --noconfirm halium-devel"
     - cd ../
     - mkdir python2
     - python -m venv python2
