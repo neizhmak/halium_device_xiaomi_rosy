@@ -6,7 +6,7 @@ container:
 build_task:
   preparation_script:
     - echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-    - pacman -Suy --noconfirm base-devel git sudo
+    - pacman -Suy --noconfirm base-devel git sudo qemu-base
     - useradd -m -g users -s /bin/bash user
     - echo "user ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
     - git clone https://aur.archlinux.org/halium-devel.git
