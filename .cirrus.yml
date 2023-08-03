@@ -9,10 +9,10 @@ build_task:
     - pacman --noconfirm -Suy base-devel git
     - useradd -m -g users -s /bin/bash user
     - cd /home/user
-    - su user
     - git clone https://aur.archlinux.org/halium-devel.git
+    - chmod 777 halium-devel
     - cd halium-devel/
-    - makepkg --noconfirm -s
+    - su user -c "makepkg --noconfirm -s"
     - exit
     - cd halium-devel/
     - pacman --noconfirm -U *.pkg.tar.* 
