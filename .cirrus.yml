@@ -6,7 +6,7 @@ container:
 build_task:
   preparation_script:
     - echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-    - pacman --noconfirm -Suy base-devel
+    - pacman --noconfirm -Suy base-devel git
     - git clone https://aur.archlinux.org/halium-devel.git
     - cd halium-devel 
     - makepkg --noconfirm -si
