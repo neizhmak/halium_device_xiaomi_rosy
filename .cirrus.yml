@@ -1,6 +1,5 @@
-build:
-  container:
-    image: archlinux:latest
-    cpu: 16
-    memory: 64G
+container:
+  image: archlinux:latest
+  cpu: 16
+  memory: 64G
   preparation_script: echo Ok
