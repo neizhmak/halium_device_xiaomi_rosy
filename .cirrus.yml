@@ -1,38 +1,7 @@
 build:
   container:
     image: archlinux:latest
+    cpu: 16
+    memory: 64G
   preparation_script:
-    - echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-    - sudo pacman --noconfirm -Suy base-devel
-    - git clone https://aur.archlinux.org/halium-devel.git
-    - cd halium-devel 
-    - makepkg --noconfirm -si
-    - cd ../
-    - mkdir python2
-    - python -m venv python2
-    - source python2/bin/activate
-    - mkdir halium 
-    - cd halium
-  get_source_script:
-    - git config --global user.name  "Artem Neizhmak"
-    - git config --global user.email "ytartem0007@gmail.com"
-    - repo init -u https://github.com/Halium/android -b halium-11.0 --depth=1 --git-lfs
-    - repo sync -c -j 16
-    - git clone https://github.com/neizhmak/halium_rosy
-    - cp halium_rosy/xiaomi_rosy.xml halium/devices/manifests/
-    - ./halium/devices/setup rosy
-  build_script:
-    - source build/envsetup.sh
-    - breakfast rosy
-    - git clone https://github.com/mer-hybris/mer-kernel-check
-    - ./mer-kernel-check/mer_verify_kernel_config kernel/xiaomi/rosy/arch/arm64/configs/rosy-perf_defconfig
-    - hybris-patches/apply-patches.sh --mb
-    - mka mkbootimg
-    - export USE_HOST_LEX=yes
-    - mka hybris-boot
-    - mka systemimage
-  env:
-    GITHUB_TOKEN: ENCRYPTED[13a5662b449c90997bc914dc49c7c5fab2ed763cfdedda700cbb8372e4d8844e7b1a3044928d67888bcbb71aac0ad2f6]
-  publish_release_script:
-    - ./halium_rosy/publish_release.sh
-  
+    - echo Ok
