@@ -21,7 +21,7 @@ jobs:
           git config --global user.name  "Artem Neizhmak"
           git config --global user.email "ytartem0007@gmail.com"
           mkdir halium && cd halium
-          repo init -u https://github.com/Halium/android -b halium-11.0 --depth=1 --git-lfs
+          repo init -u https://github.com/Halium/android -b halium-11.0 --depth=1
           repo sync -c -j 16
           git clone https://github.com/neizhmak/halium_rosy
           cp halium_rosy/xiaomi_rosy.xml halium/devices/manifests/
