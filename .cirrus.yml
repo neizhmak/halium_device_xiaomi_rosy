@@ -7,10 +7,16 @@ build_task:
   preparation_script:
     - echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
     - pacman --noconfirm -Suy base-devel git
+    - useradd -m -s /bin/bash user
+    - cd /home/user
+    - su user
     - git clone https://aur.archlinux.org/halium-devel.git
-    - cd halium-devel 
-    - makepkg --noconfirm -si
-    - cd ../
+    - cd halium-devel/
+    - makepkg --noconfirm -s
+    - exit
+    - cd halium-devel/
+    - pacman --noconfirm -U *.pkg.tar.* 
+    - cd ~/
     - mkdir python2
     - python -m venv python2
     - source python2/bin/activate
