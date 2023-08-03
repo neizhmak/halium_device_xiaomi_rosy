@@ -31,8 +31,7 @@ build_task:
     - cd halium
     - source build/envsetup.sh
     - breakfast rosy
-    - git clone https://github.com/mer-hybris/mer-kernel-check
-    - ./mer-kernel-check/mer_verify_kernel_config kernel/xiaomi/rosy/arch/arm64/configs/rosy-perf_defconfig
+    - cp ../rosy-perf_defconfig kernel/xiaomi/rosy/arch/arm64/configs/rosy-perf_defconfig
     - hybris-patches/apply-patches.sh --mb
     - mka mkbootimg
     - export USE_HOST_LEX=yes
