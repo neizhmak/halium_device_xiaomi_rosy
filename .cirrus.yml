@@ -1,18 +1,25 @@
 container:
-  image: debian:stable
+  image: archlinux:latest
   cpu: 8
   memory: 32G
 
 build_task:
   preparation_script:
-    - dpkg --add-architecture i386
-    - apt update -y
-    - apt install -y git gnupg flex bison gperf build-essential \
-        zip bzr curl libc6-dev libncurses5-dev:i386 x11proto-core-dev \
-        libx11-dev:i386 libreadline6-dev:i386 libgl1-mesa-glx:i386 \
-        libgl1-mesa-dev g++-multilib mingw-w64-i686-dev tofrodos \
-        python-markdown libxml2-utils xsltproc zlib1g-dev:i386 schedtool \
-        repo liblz4-tool bc lzop imagemagick libncurses5 rsync
+    - echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
+    - pacman --noconfirm -Suy base-devel git
+    - useradd -m -g users -s /bin/bash user
+    - cd /home/user
+    - su user
+    - git clone https://aur.archlinux.org/halium-devel.git
+    - cd halium-devel/
+    - makepkg --noconfirm -s
+    - exit
+    - cd halium-devel/
+    - pacman --noconfirm -U *.pkg.tar.* 
+    - cd ~/
+    - mkdir python2
+    - python -m venv python2
+    - source python2/bin/activate
     - mkdir halium 
     - cd halium
   get_source_script:
