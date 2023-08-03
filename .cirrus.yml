@@ -4,4 +4,6 @@ container:
   memory: 32G
 
 build_task:
-  preparation_script: sudo lsblk
+  preparation_script:
+    - lsblk
+    - ls
