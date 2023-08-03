@@ -1,0 +1,49 @@
+name: Build Halium for Rosy
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setting up the build environment
+        run: |
+          sudo dpkg --add-architecture i386
+          sudo apt update -y
+          sudo apt install -y git gnupg flex bison gperf build-essential \
+            zip bzr curl libc6-dev libncurses5-dev:i386 x11proto-core-dev \
+            libx11-dev:i386 libreadline6-dev:i386 libgl1-mesa-glx:i386 \
+            libgl1-mesa-dev g++-multilib mingw-w64-i686-dev tofrodos \
+            python-markdown libxml2-utils xsltproc zlib1g-dev:i386 schedtool \
+            repo liblz4-tool bc lzop imagemagick libncurses5 rs
+            
+      - name: Getting sources
+        run: |
+          mkdir halium && cd halium
+          repo init -u https://github.com/Halium/android -b halium-11.0 --depth=1 --git-lfs
+          repo sync -c -j 16
+          git clone https://github.com/neizhmak/halium_rosy
+          cp halium_rosy/xiaomi_rosy.xml halium/devices/manifests/
+          ./halium/devices/setup rosy
+          
+      - name: Build Halium
+        run: |
+          source build/envsetup.sh
+          breakfast rosy
+          git clone https://github.com/mer-hybris/mer-kernel-check
+          ./mer-kernel-check/mer_verify_kernel_config kernel/xiaomi/rosy/arch/arm64/configs/rosy-perf_defconfig
+          hybris-patches/apply-patches.sh --mb
+          mka mkbootimg
+          export USE_HOST_LEX=yes
+          mka hybris-boot
+          mka systemimage
+          
+      - name: Push release
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: true
+          title: "Development Build"
+          files: |
+            hybris-boot.img
+            system.img
+        
