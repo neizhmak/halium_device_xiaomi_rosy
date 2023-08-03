@@ -18,8 +18,8 @@ build_task:
     - mkdir python2
     - python -m venv python2
     - source python2/bin/activate
-  get_source_script:
     - mkdir halium 
+  get_source_script:
     - cd halium
     - git config --global user.name  "Artem Neizhmak"
     - git config --global user.email "ytartem0007@gmail.com"
@@ -28,6 +28,7 @@ build_task:
     - cp ../xiaomi_rosy.xml halium/devices/manifests/
     - ./halium/devices/setup rosy
   build_script:
+    - cd halium
     - source build/envsetup.sh
     - breakfast rosy
     - git clone https://github.com/mer-hybris/mer-kernel-check
