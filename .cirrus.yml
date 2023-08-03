@@ -18,16 +18,13 @@ build_task:
     - mkdir python2
     - python -m venv python2
     - source python2/bin/activate
+  get_source_script:
     - mkdir halium 
     - cd halium
-    - ls && ls ../
-  get_source_script:
-    - ls && ls ../
     - git config --global user.name  "Artem Neizhmak"
     - git config --global user.email "ytartem0007@gmail.com"
     - repo init -u https://github.com/Halium/android -b halium-11.0 --depth=1 --git-lfs
     - repo sync -c -j 16
-    - ls && ls ../
     - cp ../xiaomi_rosy.xml halium/devices/manifests/
     - ./halium/devices/setup rosy
   build_script:
