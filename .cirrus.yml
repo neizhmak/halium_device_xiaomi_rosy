@@ -3,5 +3,4 @@ build:
     image: archlinux:latest
     cpu: 16
     memory: 64G
-  preparation_script:
-    - echo Ok
+  preparation_script: echo Ok
