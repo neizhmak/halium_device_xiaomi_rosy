@@ -3,5 +3,5 @@ container:
   cpu: 16
   memory: 64G
 
-build:
+build_task:
   preparation_script: echo Ok
