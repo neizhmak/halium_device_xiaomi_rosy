@@ -1,8 +1,6 @@
 build:
   container:
     image: archlinux:latest
-    cpu: 16
-    memory: 64G
   preparation_script:
     - echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
     - sudo pacman --noconfirm -Suy base-devel
