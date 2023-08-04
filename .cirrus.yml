@@ -1,42 +1,42 @@
 container:
-  image: archlinux:latest
+  image: ubuntu:latest
   cpu: 8
   memory: 32G
 
 build_task:
   preparation_script:
-    - echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-    - pacman -Suy --noconfirm base-devel git sudo 
-    - useradd -m -g users -s /bin/bash user
-    - echo "user ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
-    - git clone https://aur.archlinux.org/yay-bin.git
-    - chmod 777 yay-bin
-    - cd yay-bin
-    - su user -c "makepkg --noconfirm -si"
-    - su user -c "yay -S --noconfirm halium-devel"
-    - cd ../
-    - mkdir python2
-    - python -m venv python2
-    - source python2/bin/activate
-    - mkdir halium 
+    - dpkg --add-architecture i386
+    - apt update -y
+    - apt install -y git gnupg flex bison gperf build-essential \
+        zip bzr curl libc6-dev libncurses5-dev:i386 x11proto-core-dev \
+        libx11-dev:i386 libreadline6-dev:i386 libgl1-mesa-glx:i386 \
+        libgl1-mesa-dev g++-multilib mingw-w64-i686-dev tofrodos \
+        python3-markdown libxml2-utils xsltproc zlib1g-dev:i386 schedtool \
+        liblz4-tool bc lzop imagemagick libncurses5 rsync \
+        python-is-python3 python2
+    - echo export PATH=\$PATH:\$HOME >> .bashrc
+    - curl https://storage.googleapis.com/git-repo-downloads/repo
+    - chmod a+rx repo
+    - mkdir halium
   get_source_script:
     - cd halium
     - git config --global user.name  "Artem Neizhmak"
     - git config --global user.email "ytartem0007@gmail.com"
-    - repo init -u https://github.com/Halium/android -b halium-11.0 --depth=1 --git-lfs
+    - repo init -u https://github.com/Halium/android -b halium-11.0 --depth=1
     - repo sync -c -j 16
     - cp ../xiaomi_rosy.xml halium/devices/manifests/
     - ./halium/devices/setup rosy
+    - hybris-patches/apply-patches.sh --mb
   build_script:
     - cd halium
     - source build/envsetup.sh
     - breakfast rosy
-    - cp ../rosy-perf_defconfig kernel/xiaomi/rosy/arch/arm64/configs/rosy-perf_defconfig
-    - hybris-patches/apply-patches.sh --mb
+    - ./halium/halium-boot/check-kernel-config kernel/xiaomi/rosy/arch/arm64/configs/rosy-perf_defconfig -w
+    - cat /halium/device/xiaomi/rosy/BoardConfig.mk
+    - echo "BOARD_KERNEL_CMDLINE += console=tty0" >> /halium/device/xiaomi/rosy/BoardConfig.mk
     - mka mkbootimg
     - export USE_HOST_LEX=yes
     - mka halium-boot
-    - mka systemimage
   env:
     GITHUB_TOKEN: ENCRYPTED[13a5662b449c90997bc914dc49c7c5fab2ed763cfdedda700cbb8372e4d8844e7b1a3044928d67888bcbb71aac0ad2f6]
   publish_release_script:
