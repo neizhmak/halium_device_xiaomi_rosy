@@ -12,8 +12,8 @@ fi
 
 file_content_type="application/octet-stream"
 files_to_upload=(
-  hybris-boot.img
-  system.img
+  out/target/product/rosy/hybris-boot.img
+  out/target/product/rosy/system.img
 )
 
 for fpath in $files_to_upload
