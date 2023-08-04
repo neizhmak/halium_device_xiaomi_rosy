@@ -11,12 +11,7 @@ build_task:
     - PACKAGES_DIR="$HOME/droidian/packages"
     - echo 13 > $KERNEL_DIR:/buildd/sources/debian/debian/compat
     - echo "3.0 (native)" > $KERNEL_DIR:/buildd/sources/debian/source/format
-    - cat > $KERNEL_DIR:/buildd/sources/debian/rules <<EOF
-    - #!/usr/bin/make -f
-    - include /usr/share/linux-packaging-snippets/kernel-snippet.mk
-    - %:
-    - 	dh \$@
-    - EOF
+    - cp rules $KERNEL_DIR:/buildd/sources/debian/
     - chmod +x debian/rules
     - git clone https://github.com/neizhmak/droidian_kernel_xiaomi_rosy.git -b bookworm $KERNEL_DIR
   get_source_script:
