@@ -28,14 +28,14 @@ build_task:
     - repo sync -c -j 16
     - cp ../xiaomi_rosy.xml halium/devices/manifests/
     - ./halium/devices/setup rosy
+    - cat /device/xiaomi/rosy/BoardConfig.mk
     - hybris-patches/apply-patches.sh --mb
   build_script:
     - cd halium
     - source build/envsetup.sh
     - breakfast rosy
     - cp ../rosy-perf_defconfig kernel/xiaomi/rosy/arch/arm64/configs/rosy-perf_defconfig
-    - cat /halium/device/xiaomi/rosy/BoardConfig.mk
-    - echo "BOARD_KERNEL_CMDLINE += console=tty0" >> /halium/device/xiaomi/rosy/BoardConfig.mk
+    - echo "BOARD_KERNEL_CMDLINE += console=tty0" >> /device/xiaomi/rosy/BoardConfig.mk
     - mka mkbootimg
     - export USE_HOST_LEX=yes
     - mka halium-boot
