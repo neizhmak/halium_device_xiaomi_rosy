@@ -35,7 +35,7 @@ build_task:
     - hybris-patches/apply-patches.sh --mb
     - mka mkbootimg
     - export USE_HOST_LEX=yes
-    - mka hybris-boot
+    - mka halium-boot
     - mka systemimage
   env:
     GITHUB_TOKEN: ENCRYPTED[13a5662b449c90997bc914dc49c7c5fab2ed763cfdedda700cbb8372e4d8844e7b1a3044928d67888bcbb71aac0ad2f6]
