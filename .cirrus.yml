@@ -20,6 +20,7 @@ build_task:
     - chmod a+rx ~/bin/repo
     - mkdir halium
   get_source_script:
+    - source ~/.bashrc
     - cd halium
     - git config --global user.name  "Artem Neizhmak"
     - git config --global user.email "ytartem0007@gmail.com"
@@ -30,6 +31,10 @@ build_task:
     - hybris-patches/apply-patches.sh --mb
   build_script:
     - cd halium
+    - ls
+    - ls arch/
+    - ls arch/arm64/
+    - ls arch/arm64/configs
     - source build/envsetup.sh
     - breakfast rosy
     - ./halium/halium-boot/check-kernel-config kernel/xiaomi/rosy/arch/arm64/configs/rosy-perf_defconfig -w
