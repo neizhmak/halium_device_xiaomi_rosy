@@ -15,13 +15,13 @@ build_task:
     - chmod +x $KERNEL_DIR:/buildd/sources/debian/rules
     - git clone https://github.com/neizhmak/droidian_kernel_xiaomi_rosy.git -b bookworm $KERNEL_DIR
   get_source_script:
-    - apt install linux-packaging-snippets
+    - apt install -y linux-packaging-snippets
     - cat /usr/share/linux-packaging-snippets/kernel-info.mk.example
     - unpackbootimg --boot_img boot.img
     - ls
   build_script:
     - exit
   env:
-    GITHUB_TOKEN: ENCRYPTED[13a5662b449c90997bc914dc49c7c5fab2ed763cfdedda700cbb8372e4d8844e7b1a3044928d67888bcbb71aac0ad2f6]
+    GITHUB_TOKEN: ENCRYPTED[b28f79174c63e23e95a6767888d6b64b4c377572a2a4ee842cc115cce0e2d9f4dc6a655053bea7928630ae64dbefffee]
   publish_release_script:
     - source ../publish_release.sh
