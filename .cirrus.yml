@@ -24,7 +24,7 @@ build_task:
     - cd halium
     - git config --global user.name  "Artem Neizhmak"
     - git config --global user.email "ytartem0007@gmail.com"
-    - repo init -u https://github.com/Halium/android -b halium-11.0 --depth=1
+    - repo init -u https://github.com/Halium/android -b halium-11.0 --depth=1 --git-lfs
     - repo sync -c -j 16
     - cp ../xiaomi_rosy.xml halium/devices/manifests/
     - ./halium/devices/setup rosy
