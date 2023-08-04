@@ -28,7 +28,12 @@ build_task:
     - repo sync -c -j 16
     - cp ../xiaomi_rosy.xml halium/devices/manifests/
     - ./halium/devices/setup rosy
-    - cat /device/xiaomi/rosy/BoardConfig.mk
+    - ls device/
+    - ls device/xiaomi/rosy/
+    - ls kernel/
+    - ls kernel/xiaomi/rosy/
+    - ls halium/
+    - ls halium/halium-boot/
     - hybris-patches/apply-patches.sh --mb
   build_script:
     - cd halium
