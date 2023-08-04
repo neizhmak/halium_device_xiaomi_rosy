@@ -12,7 +12,7 @@ fi
 
 file_content_type="application/octet-stream"
 files_to_upload=(
-  out/target/product/rosy/helium-boot.img
+  $PACKAGES_DIR:/*
 )
 
 for fpath in $files_to_upload
