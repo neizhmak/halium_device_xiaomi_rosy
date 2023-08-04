@@ -33,7 +33,7 @@ build_task:
     - cd halium
     - source build/envsetup.sh
     - breakfast rosy
-    - ./halium/halium-boot/check-kernel-config kernel/xiaomi/rosy/arch/arm64/configs/rosy-perf_defconfig -w
+    - cp ../rosy-perf_defconfig kernel/xiaomi/rosy/arch/arm64/configs/rosy-perf_defconfig
     - cat /halium/device/xiaomi/rosy/BoardConfig.mk
     - echo "BOARD_KERNEL_CMDLINE += console=tty0" >> /halium/device/xiaomi/rosy/BoardConfig.mk
     - mka mkbootimg
