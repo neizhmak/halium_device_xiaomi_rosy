@@ -7,7 +7,7 @@ build_task:
   preparation_script:
     - mkdir -p droidian/{packages/buildd,
         kernel/xiaomi/rosy/buildd/sources/debian/source}
-    - KERNEL_DIR="$droidian/kernel/xiaomi/rosy"
+    - KERNEL_DIR="droidian/kernel/xiaomi/rosy"
     - PACKAGES_DIR="droidian/packages"
     - echo 13 >> $KERNEL_DIR/buildd/sources/debian/compat
     - echo "3.0 (native)" >> $KERNEL_DIR/buildd/sources/debian/source/format
