@@ -1,5 +1,5 @@
 container:
-  image: ubuntu:rolling
+  image: ubuntu:focal
   cpu: 8
   memory: 32G
 
