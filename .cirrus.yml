@@ -1,6 +1,7 @@
 container:
-  image: debian:lastes
-
+  image: debian:
+  cpu: 8
+  memory: 32G
 
 build_task:
   preparation_script:
