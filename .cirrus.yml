@@ -1,5 +1,5 @@
 container:
-  image: debian:latest
+  image: debian:unstable-slim
   cpu: 8
   memory: 32G
 
