@@ -15,7 +15,10 @@ build_task:
     - echo "3.0 (native)" >> $KERNEL_DIR/buildd/sources/debian/source/format
     - cp rules $KERNEL_DIR/buildd/sources/debian/
     - chmod +x $KERNEL_DIR/buildd/sources/debian/rules
-  build_script: cd droidian && RELENG_HOST_ARCH="arm64" releng-build-package
+  build_script:
+    - cd $KERNEL_DIR/buildd/sources 
+    - debian/rules debian/control
+    - RELENG_HOST_ARCH="arm64" releng-build-package
   env:
     GITHUB_TOKEN: ENCRYPTED[b28f79174c63e23e95a6767888d6b64b4c377572a2a4ee842cc115cce0e2d9f4dc6a655053bea7928630ae64dbefffee]
   publish_release_script: source ../publish_release.sh
