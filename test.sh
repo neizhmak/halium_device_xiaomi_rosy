@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 if [ -z "${CI}" ] && ([ -e /.dockerenv ] || [ -e /run/.containerenv ]); then
     IS_CONTAINER="true"
