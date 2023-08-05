@@ -16,7 +16,7 @@ build_task:
 #    - mkdir -p buildd/sources/debian/source
     - apt update -y
     - apt install -y linux-packaging-snippets
-    - releng-build-package --help
+    - git rev-parse HEAD
 #    - cd buildd/sources/debian
 #    - cp $FILES_DIR/kernel-info.mk ./
 #    - echo 13 >> compat
