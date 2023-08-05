@@ -11,7 +11,7 @@ env:
 build_task:
   preparation_script:
     - mkdir -p packages/buildd
-    - git clone https://github.com/baunilla/android_kernel_xiaomi_rosy.git
+    - git clone https://github.com/baunilla/android_kernel_xiaomi_rosy.git -b lineage-18.1
     - cd $KERNEL_DIR
     - git checkout -b bookworm
     - cp $FILES_DIR/rosy-perf-halium_defconfig arch/arm64/configs/
