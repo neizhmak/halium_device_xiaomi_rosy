@@ -10,9 +10,9 @@ env:
 build_task:
   preparation_script:
     - mkdir -p droidian/{packages/buildd,kernel/xiaomi/rosy}/
-    - git clone https://github.com/droidian/linux-packaging-snippets.git
     - git clone https://github.com/neizhmak/droidian_kernel_xiaomi_rosy.git -b bookworm $KERNEL_DIR
     - mkdir -p $KERNEL_DIR/buildd/sources/debian/source
+    - apt install -y linux-packaging-snippets
     - cp kernel-info.mk $KERNEL_DIR/buildd/sources/debian/
     - echo 13 >> $KERNEL_DIR/buildd/sources/debian/compat
     - echo "3.0 (native)" >> $KERNEL_DIR/buildd/sources/debian/source/format
@@ -20,7 +20,6 @@ build_task:
     - chmod +x $KERNEL_DIR/buildd/sources/debian/rules
   build_script:
     - cd $KERNEL_DIR/buildd/sources
-    - echo >> debian/control
     - debian/rules debian/control
     - RELENG_HOST_ARCH="arm64" releng-build-package
   publish_release_script: source ../publish_release.sh
