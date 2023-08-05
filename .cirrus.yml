@@ -22,7 +22,7 @@ build_task:
     - ./test.sh
     - apt update -y
     - apt install -y linux-packaging-snippets
-    - /usr/bin/env bash - c "RELENG_HOST_ARCH=arm64 releng-build-package"
+    - /usr/bin/env bash -c "RELENG_HOST_ARCH=arm64 releng-build-package"
 #    - cd buildd/sources/debian
 #    - cp $FILES_DIR/kernel-info.mk ./
 #    - echo 13 >> compat
