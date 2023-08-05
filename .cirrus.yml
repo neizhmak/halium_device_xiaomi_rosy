@@ -27,7 +27,7 @@ build_task:
     - apt update -y
     - apt install -y linux-packaging-snippets
   build_script:
-    - cd $KERNEL_DIR/buildd/sources
-    - debian/rules debian/control
+    - cd $KERNEL_DIR
+    - buildd/sources/debian/rules buildd/sources/debian/control
     - RELENG_HOST_ARCH=arm64 releng-build-package
   publish_release_script: source publish_release.sh
