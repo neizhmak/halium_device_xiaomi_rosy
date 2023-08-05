@@ -26,7 +26,8 @@ build_task:
     - cp $FILES_DIR/rules ./
     - chmod +x rules
     - apt update -y
-    - apt install -y linux-packaging-snippets
+    - apt install -y linux-packaging-snippets clang-android-10.0-r370808 python
+    - clang -v
   build_script:
     - cd $KERNEL_DIR
     - debian/rules debian/control
