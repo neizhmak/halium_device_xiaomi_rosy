@@ -43,7 +43,7 @@ KERNEL_CONFIG_USE_DIFFCONFIG = 0
 KERNEL_DEFCONFIG = rosy-perf-halium_defconfig
 
 # Whether to include DTBs with the image. Use 0 (no) or 1.
-KERNEL_IMAGE_WITH_DTB = 1
+KERNEL_IMAGE_WITH_DTB = 0
 
 # Path to the DTB
 # If you leave this undefined, an attempt to find it automatically
@@ -51,7 +51,7 @@ KERNEL_IMAGE_WITH_DTB = 1
 #KERNEL_IMAGE_DTB = arch/arm64/boot/dts/qcom/my_dtb.dtb
 
 # Whether to include a DTB Overlay. Use 0 (no) or 1.
-KERNEL_IMAGE_WITH_DTB_OVERLAY = 1
+KERNEL_IMAGE_WITH_DTB_OVERLAY = 0
 
 # Path to the DTB overlay.
 # If you leave this undefined, an attempt to find it automatically
