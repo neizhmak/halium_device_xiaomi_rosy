@@ -19,10 +19,10 @@ build_task:
     - echo >> /run/.containerenv
     - cat /run/.containerenv
     - chmod 777 test.sh
-    - source test.sh
+    - /usr/bin/env bash -c test.sh
     - apt update -y
     - apt install -y linux-packaging-snippets
-    - source "RELENG_HOST_ARCH=arm64 releng-build-package"
+    - source RELENG_HOST_ARCH=arm64 releng-build-package
 #    - cd buildd/sources/debian
 #    - cp $FILES_DIR/kernel-info.mk ./
 #    - echo 13 >> compat
