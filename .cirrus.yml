@@ -18,7 +18,7 @@ build_task:
 #    - echo >> /.dockerenv
     - apt update -y
     - apt install -y linux-packaging-snippets clang-android-10.0-r370808
-    - echo export PATH=\$PATH:\/usr/lib/llvm-android-*/bin >> ~/.bashrc
+    - echo export PATH=\$PATH:\/usr/lib/llvm-android-10.0-r370808/bin >> ~/.bashrc
     - source ~/.bashrc
     - clang -v
 #    - RELENG_HOST_ARCH=arm64 releng-build-package
