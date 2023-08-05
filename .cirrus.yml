@@ -16,7 +16,7 @@ build_task:
 #    - mkdir -p buildd/sources/debian/source
     - apt update -y
     - apt install -y linux-packaging-snippets
-    - https://github.com/Jguer/yay.git
+    - git clone https://github.com/Jguer/yay.git
     - cd yay
     - git rev-parse HEAD
 #    - cd buildd/sources/debian
