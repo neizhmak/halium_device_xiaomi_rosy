@@ -19,6 +19,7 @@ build_task:
     - echo >> /run/.containerenv
     - cat /run/.containerenv
     - chmod 777 test.sh
+    - export CI=true
     - /usr/bin/env bash -c "./test.sh"
     - apt update -y
     - apt install -y linux-packaging-snippets
