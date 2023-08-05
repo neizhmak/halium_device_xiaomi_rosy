@@ -5,19 +5,22 @@ container:
 env:
   GITHUB_TOKEN: ENCRYPTED[b28f79174c63e23e95a6767888d6b64b4c377572a2a4ee842cc115cce0e2d9f4dc6a655053bea7928630ae64dbefffee]
   PACKAGES_DIR: "$HOME/droidian/packages"
-  KERNEL_DIR: "$HOME/droidian/droidian_kernel_xiaomi_rosy"
+  KERNEL_DIR: "$HOME/droidian/kernel/vendor/device"
 
 build_task:
   preparation_script:
     - mkdir -p droidian/{packages/buildd,kernel/vendor/device}/
-    - git clone https://github.com/neizhmak/droidian_kernel_xiaomi_rosy.git -b bookworm $KERNEL_DIR
-    - mkdir -p $KERNEL_DIR/buildd/sources/debian/source
+    - git clone https://github.com/baunilla/android_kernel_xiaomi_rosy.git -b lineage-18.1 $KERNEL_DIR
+    - cd $KERNEL_DIR
+    - git checkout -b bookworm
+    - cp rosy-perf-halium_defconfig arch/arm64/configs/
+    - mkdir -p buildd/sources/debian/source
     - apt install -y linux-packaging-snippets
-    - cp kernel-info.mk $KERNEL_DIR/buildd/sources/debian/
-    - echo 13 >> $KERNEL_DIR/buildd/sources/debian/compat
-    - echo "3.0 (native)" >> $KERNEL_DIR/buildd/sources/debian/source/format
-    - cp rules $KERNEL_DIR/buildd/sources/debian/
-    - chmod +x $KERNEL_DIR/buildd/sources/debian/rules
+    - cp kernel-info.mk buildd/sources/debian/
+    - echo 13 >> buildd/sources/debian/compat
+    - echo "3.0 (native)" >> buildd/sources/debian/source/format
+    - cp rules buildd/sources/debian/
+    - chmod +x buildd/sources/debian/rules
   build_script:
     - cd $KERNEL_DIR/buildd/sources
     - debian/rules debian/control
