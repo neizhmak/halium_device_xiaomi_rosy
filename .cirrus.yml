@@ -5,8 +5,7 @@ container:
 
 build_task:
   preparation_script:
-    - mkdir -p droidian/{packages/buildd,
-        kernel/xiaomi/rosy/buildd/sources/debian/source}
+    - mkdir -p droidian/{packages/buildd,kernel/xiaomi/rosy/buildd/sources/debian/source}/
     - ls
     - ls droidian
     - KERNEL_DIR="droidian/kernel/xiaomi/rosy"
