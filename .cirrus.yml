@@ -5,22 +5,22 @@ container:
 
 build_task:
   preparation_script:
-    - mkdir -p droidian/{packages/buildd,kernel/xiaomi/rosy/buildd/sources/debian/source}/
-    - ls
-    - ls droidian
+    - mkdir -p droidian/{packages/buildd,kernel/xiaomi/rosy}/
     - KERNEL_DIR="droidian/kernel/xiaomi/rosy"
     - PACKAGES_DIR="droidian/packages"
+    - git clone https://github.com/neizhmak/droidian_kernel_xiaomi_rosy.git -b bookworm $KERNEL_DIR
+    - mkdir -p $KERNEL_DIR/buildd/sources/debian/source
     - echo 13 >> $KERNEL_DIR/buildd/sources/debian/compat
     - echo "3.0 (native)" >> $KERNEL_DIR/buildd/sources/debian/source/format
     - cp rules $KERNEL_DIR/buildd/sources/debian/
     - chmod +x $KERNEL_DIR/buildd/sources/debian/rules
-    - git clone https://github.com/neizhmak/droidian_kernel_xiaomi_rosy.git -b bookworm $KERNEL_DIR
     - ls $KERNEL_DIR
   get_source_script:
     - apt install -y linux-packaging-snippets
     - cat /usr/share/linux-packaging-snippets/kernel-info.mk.example
     - unpackbootimg --boot_img boot.img
     - ls
+    - ls boot
   build_script:
     - exit
   env:
