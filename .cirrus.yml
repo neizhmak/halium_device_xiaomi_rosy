@@ -8,7 +8,7 @@ build_task:
     - git clone https://github.com/anestisb/android-unpackbootimg.git
     - cd android-unpackbootimg
     - make
-    - unpackbootimg -i ../boot.img
+    - ./unpackbootimg -i ../boot.img
     - echo "========================================================================================"
     - mkdir -p droidian/{packages/buildd,kernel/xiaomi/rosy}/
     - KERNEL_DIR="droidian/kernel/xiaomi/rosy"
