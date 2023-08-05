@@ -5,11 +5,11 @@ container:
 env:
   GITHUB_TOKEN: ENCRYPTED[b28f79174c63e23e95a6767888d6b64b4c377572a2a4ee842cc115cce0e2d9f4dc6a655053bea7928630ae64dbefffee]
   PACKAGES_DIR: "droidian/packages"
-  KERNEL_DIR: "droidian/kernel/xiaomi/rosy"
+  KERNEL_DIR: "droidian/kernel/vendor/device"
 
 build_task:
   preparation_script:
-    - mkdir -p droidian/{packages/buildd,kernel/xiaomi/rosy}/
+    - mkdir -p droidian/{packages/buildd,kernel/vendor/device}/
     - git clone https://github.com/neizhmak/droidian_kernel_xiaomi_rosy.git -b bookworm $KERNEL_DIR
     - mkdir -p $KERNEL_DIR/buildd/sources/debian/source
     - apt install -y linux-packaging-snippets
