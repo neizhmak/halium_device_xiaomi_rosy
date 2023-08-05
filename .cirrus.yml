@@ -28,7 +28,6 @@ build_task:
     - apt install -y linux-packaging-snippets
   build_script:
     - cd $KERNEL_DIR
-    - make ARCH=arm64 O=out/KERNEL_OBJ/ rosy-perf-halium_defconfig
     - debian/rules debian/control
-    - RELENG_HOST_ARCH=arm64 releng-build-package
+    - RELENG_HOST_ARCH=amd64 releng-build-package
   publish_release_script: source publish_release.sh
