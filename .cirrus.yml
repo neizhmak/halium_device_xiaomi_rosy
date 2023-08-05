@@ -9,10 +9,15 @@ env:
 
 build_task:
   preparation_script:
+    - ls ~/
     - mkdir -p droidian/{packages/buildd,kernel/vendor/device}/
     - git clone https://github.com/baunilla/android_kernel_xiaomi_rosy.git -b lineage-18.1 $KERNEL_DIR
     - cd $KERNEL_DIR
     - git checkout -b bookworm
+    - ls
+    - ls ~/
+    - ls arch
+    - ls arch/arm64/configs
     - cp ~/rosy-perf-halium_defconfig arch/arm64/configs/
     - mkdir -p buildd/sources/debian/source
     - apt install -y linux-packaging-snippets
