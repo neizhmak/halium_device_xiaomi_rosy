@@ -11,6 +11,9 @@ build_task:
   preparation_script:
     - mkdir -p droidian/{packages/buildd,kernel/vendor/device}/
     - git clone https://github.com/neizhmak/droidian_kernel_xiaomi_rosy.git -b bookworm $KERNEL_DIR
+    - cd $KERNEL_DIR
+    - git checkout -b bookworm
+    - cd ../
     - mkdir -p $KERNEL_DIR/buildd/sources/debian/source
     - apt install -y linux-packaging-snippets
     - cp kernel-info.mk $KERNEL_DIR/buildd/sources/debian/
