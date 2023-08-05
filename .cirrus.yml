@@ -5,7 +5,7 @@ env:
   PACKAGES_DIR: "/tmp/cirrus-ci-build/packages"
   KERNEL_DIR: "/tmp/cirrus-ci-build/android_kernel_xiaomi_rosy"
   FILES_DIR: "/tmp/cirrus-ci-build/"
-  CI: true
+  CI: ""
 
 build_task:
   preparation_script:
@@ -20,7 +20,7 @@ build_task:
     - echo >> /run/.containerenv
     - cat /run/.containerenv
     - chmod 777 test.sh
-    - export CI=true
+    - export CI=""
     - /usr/bin/env bash -c "./test.sh"
     - apt update -y
     - apt install -y linux-packaging-snippets
