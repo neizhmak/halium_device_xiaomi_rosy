@@ -18,7 +18,9 @@ build_task:
 #    - echo >> /.dockerenv
     - apt update -y
     - apt install -y linux-packaging-snippets clang-android-10.0-r370808 python-is-python3
-    - ln -s /usr/lib/llvm-android-*/bin/clang
+    - ln -s /usr/lib/llvm-android-*/bin/clang /bin/
+    - clang -v
+    - ln -s /usr/lib/llvm-android-*/bin/* /bin/
     - clang -v
 #    - RELENG_HOST_ARCH=arm64 releng-build-package
 #    - cd buildd/sources/debian
