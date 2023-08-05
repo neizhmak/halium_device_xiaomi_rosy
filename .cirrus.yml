@@ -14,6 +14,7 @@ build_task:
 #    - git checkout -b bookworm
 #    - cp $FILES_DIR/rosy-perf-halium_defconfig arch/arm64/configs/
 #    - mkdir -p buildd/sources/debian/source
+    - echo >> /.dockerenv
     - cat /.dockerenv
     - cat /run/.containerenv
     - apt update -y
