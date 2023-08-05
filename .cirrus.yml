@@ -5,15 +5,12 @@ container:
 env:
   GITHUB_TOKEN: ENCRYPTED[b28f79174c63e23e95a6767888d6b64b4c377572a2a4ee842cc115cce0e2d9f4dc6a655053bea7928630ae64dbefffee]
   PACKAGES_DIR: "$HOME/droidian/packages"
-  KERNEL_DIR: "$HOME/droidian/kernel/vendor/device"
+  KERNEL_DIR: "$HOME/droidian/droidian_kernel_xiaomi_rosy"
 
 build_task:
   preparation_script:
     - mkdir -p droidian/{packages/buildd,kernel/vendor/device}/
     - git clone https://github.com/neizhmak/droidian_kernel_xiaomi_rosy.git -b bookworm $KERNEL_DIR
-    - cd $KERNEL_DIR
-    - git checkout -b bookworm
-    - cd ../
     - mkdir -p $KERNEL_DIR/buildd/sources/debian/source
     - apt install -y linux-packaging-snippets
     - cp kernel-info.mk $KERNEL_DIR/buildd/sources/debian/
@@ -22,10 +19,7 @@ build_task:
     - cp rules $KERNEL_DIR/buildd/sources/debian/
     - chmod +x $KERNEL_DIR/buildd/sources/debian/rules
   build_script:
-    - cd $KERNEL_DIR
-    - mkdir -p out/KERNEL_OBJ
-    - make ARCH=arm64 O=out/KERNEL_OBJ/ rosy-perf-halium_defconfig
-    - cd buildd/sources
+    - cd $KERNEL_DIR/buildd/sources
     - debian/rules debian/control
     - RELENG_HOST_ARCH="arm64" releng-build-package
   publish_release_script: source ../publish_release.sh
