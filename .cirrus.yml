@@ -5,6 +5,7 @@ env:
   PACKAGES_DIR: "/tmp/cirrus-ci-build/packages"
   KERNEL_DIR: "/tmp/cirrus-ci-build/android_kernel_xiaomi_rosy"
   FILES_DIR: "/tmp/cirrus-ci-build/"
+  CI: true
 
 build_task:
   preparation_script:
