@@ -5,7 +5,6 @@ env:
   PACKAGES_DIR: "/tmp/cirrus-ci-build/packages"
   KERNEL_DIR: "/tmp/cirrus-ci-build/android_kernel_xiaomi_rosy"
   FILES_DIR: "/tmp/cirrus-ci-build/"
-  PATH: "$PATH:/usr/lib/llvm-android-10.0-r370808/bin"
   CI: ""
 
 build_task:
@@ -19,6 +18,7 @@ build_task:
 #    - echo >> /.dockerenv
     - apt update -y
     - apt install -y linux-packaging-snippets clang-android-10.0-r370808
+    - ln -s /usr/lib/llvm-android-*/bin/*
     - clang -v
 #    - RELENG_HOST_ARCH=arm64 releng-build-package
 #    - cd buildd/sources/debian
