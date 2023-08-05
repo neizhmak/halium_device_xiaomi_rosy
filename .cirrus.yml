@@ -18,6 +18,8 @@ build_task:
     - cat /.dockerenv
     - echo >> /run/.containerenv
     - cat /run/.containerenv
+    - chmod 777 test.sh
+    - ./test.sh
     - apt update -y
     - apt install -y linux-packaging-snippets
     - RELENG_HOST_ARCH=arm64 releng-build-package
