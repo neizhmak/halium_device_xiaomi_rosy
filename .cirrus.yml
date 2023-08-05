@@ -19,7 +19,8 @@ build_task:
     - cp rules $KERNEL_DIR/buildd/sources/debian/
     - chmod +x $KERNEL_DIR/buildd/sources/debian/rules
   build_script:
-    - cd $KERNEL_DIR/buildd/sources 
+    - cd $KERNEL_DIR/buildd/sources
+    - echo >> debian/control
     - debian/rules debian/control
     - RELENG_HOST_ARCH="arm64" releng-build-package
   publish_release_script: source ../publish_release.sh
