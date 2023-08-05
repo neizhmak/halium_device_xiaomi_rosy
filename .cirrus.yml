@@ -31,6 +31,6 @@ build_task:
     - cd $KERNEL_DIR
     - debian/rules debian/control
     - sed -i '13i               device-tree-compiler' debian/control
-    - ls debian/control
+    - cat debian/control
     - RELENG_HOST_ARCH=arm64 releng-build-package
   publish_release_script: source publish_release.sh
