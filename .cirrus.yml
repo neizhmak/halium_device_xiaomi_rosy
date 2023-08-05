@@ -7,7 +7,6 @@ env:
   PACKAGES_DIR: "/tmp/cirrus-ci-build/packages"
   KERNEL_DIR: "/tmp/cirrus-ci-build/android_kernel_xiaomi_rosy"
   FILES_DIR: "/tmp/cirrus-ci-build/"
-  PATH: "$PATH:/usr/lib/llvm-android-10.0-r370808/bin"
   CI: ""
 
 build_task:
@@ -26,8 +25,8 @@ build_task:
     - cp $FILES_DIR/rules ./
     - chmod +x rules
     - apt update -y
-    - apt install -y linux-packaging-snippets clang-android-10.0-r370808 python-is-python3
-    - clang -v
+    - apt install -y linux-packaging-snippets clang-android-10.0-r370808
+    - ln -s /usr/lib/llvm-android-*/bin/* /bin/
   build_script:
     - cd $KERNEL_DIR
     - debian/rules debian/control
