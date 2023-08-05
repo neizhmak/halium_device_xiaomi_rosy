@@ -4,16 +4,12 @@ container:
   memory: 32G
 env:
   GITHUB_TOKEN: ENCRYPTED[b28f79174c63e23e95a6767888d6b64b4c377572a2a4ee842cc115cce0e2d9f4dc6a655053bea7928630ae64dbefffee]
-  PACKAGES_DIR: "$HOME/packages"
-  KERNEL_DIR: "$HOME/android_kernel_xiaomi_rosy"
-  FILES_DIR: "$HOME/halium_device_xiaomi_rosy"
+  PACKAGES_DIR: "/tmp/cirrus-ci-build/packages"
+  KERNEL_DIR: "/tmp/cirrus-ci-build/android_kernel_xiaomi_rosy"
+  FILES_DIR: "/tmp/cirrus-ci-build/"
 
 build_task:
   preparation_script:
-    - echo $PWD
-    - cd ~/
-    - echo $PWD
-    - git clone https://github.com/neizhmak/halium_device_xiaomi_rosy.git
     - mkdir -p packages/buildd
     - git clone https://github.com/baunilla/android_kernel_xiaomi_rosy.git
     - cd $KERNEL_DIR
@@ -32,4 +28,4 @@ build_task:
     - cd $KERNEL_DIR/buildd/sources
     - debian/rules debian/control
     - RELENG_HOST_ARCH="arm64" releng-build-package
-  publish_release_script: source $FILES_DIR/publish_release.sh
+  publish_release_script: source publish_release.sh
