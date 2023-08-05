@@ -5,6 +5,11 @@ container:
 
 build_task:
   preparation_script:
+    - git clone https://github.com/anestisb/android-unpackbootimg.git
+    - cd android-unpackbootimg
+    - make
+    - unpackbootimg -i ../boot.img
+    - echo "========================================================================================"
     - mkdir -p droidian/{packages/buildd,kernel/xiaomi/rosy}/
     - KERNEL_DIR="droidian/kernel/xiaomi/rosy"
     - PACKAGES_DIR="droidian/packages"
@@ -16,11 +21,7 @@ build_task:
     - chmod +x $KERNEL_DIR/buildd/sources/debian/rules
     - ls $KERNEL_DIR
   get_source_script:
-    - apt install -y linux-packaging-snippets
-    - cat /usr/share/linux-packaging-snippets/kernel-info.mk.example
-    - unpackbootimg --boot_img boot.img
-    - ls
-    - ls boot
+    - 
   build_script:
     - exit
   env:
