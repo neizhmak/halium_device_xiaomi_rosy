@@ -1,7 +1,5 @@
 container:
   image: quay.io/droidian/build-essential:bookworm-amd64
-  cpu: 8
-  memory: 32G
 env:
   GITHUB_TOKEN: ENCRYPTED[b28f79174c63e23e95a6767888d6b64b4c377572a2a4ee842cc115cce0e2d9f4dc6a655053bea7928630ae64dbefffee]
   PACKAGES_DIR: "/tmp/cirrus-ci-build/packages"
@@ -10,22 +8,23 @@ env:
 
 build_task:
   preparation_script:
-    - mkdir -p packages/buildd
-    - git clone https://github.com/baunilla/android_kernel_xiaomi_rosy.git -b lineage-18.1
-    - cd $KERNEL_DIR
-    - git checkout -b bookworm
-    - cp $FILES_DIR/rosy-perf-halium_defconfig arch/arm64/configs/
-    - mkdir -p buildd/sources/debian/source
+#    - mkdir -p packages/buildd
+#    - git clone https://github.com/baunilla/android_kernel_xiaomi_rosy.git -b lineage-18.1
+#    - cd $KERNEL_DIR
+#    - git checkout -b bookworm
+#    - cp $FILES_DIR/rosy-perf-halium_defconfig arch/arm64/configs/
+#    - mkdir -p buildd/sources/debian/source
     - apt update -y
     - apt install -y linux-packaging-snippets
-    - cd buildd/sources/debian
-    - cp $FILES_DIR/kernel-info.mk ./
-    - echo 13 >> compat
-    - echo "3.0 (native)" >> source/format
-    - cp $FILES_DIR/rules ./
-    - chmod +x rules
+    releng-build-package --help
+#    - cd buildd/sources/debian
+#    - cp $FILES_DIR/kernel-info.mk ./
+#    - echo 13 >> compat
+#    - echo "3.0 (native)" >> source/format
+#    - cp $FILES_DIR/rules ./
+#    - chmod +x rules
   build_script:
-    - cd $KERNEL_DIR/buildd/sources
-    - debian/rules debian/control
-    - RELENG_HOST_ARCH="arm64" releng-build-package
-  publish_release_script: source publish_release.sh
+#    - cd $KERNEL_DIR/buildd/sources
+#    - debian/rules debian/control
+#    - RELENG_HOST_ARCH="arm64" releng-build-package
+#  publish_release_script: source publish_release.sh
