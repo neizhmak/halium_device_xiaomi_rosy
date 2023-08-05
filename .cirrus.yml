@@ -15,10 +15,9 @@ build_task:
 #    - cp $FILES_DIR/rosy-perf-halium_defconfig arch/arm64/configs/
 #    - mkdir -p buildd/sources/debian/source
     - echo >> /run/.containerenv
-    - bash -e /run/.containerenv
+    - export
     - apt update -y
     - apt install -y linux-packaging-snippets
-    - git rev-parse HEAD
     - releng-build-package
 #    - cd buildd/sources/debian
 #    - cp $FILES_DIR/kernel-info.mk ./
