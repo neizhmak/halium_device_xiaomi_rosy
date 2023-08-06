@@ -11,7 +11,6 @@ env:
 
 build_task:
   preparation_script:
-    - export
     - git clone https://github.com/baunilla/android_kernel_xiaomi_rosy.git -b lineage-18.1
     - mkdir -p packages/buildd
     - cd $KERNEL_DIR
@@ -24,7 +23,7 @@ build_task:
     - echo 13 >> compat 
     - cp $FILES_DIR/kernel-info.mk ./
     - cp $FILES_DIR/rules ./
-    - chmod +x ../publish_release.sh
+    - chmod +x $FILES_DIR/publish_release.sh
     - chmod +x rules
     - apt update -y
     - apt install -y linux-packaging-snippets clang-android-10.0-r370808
