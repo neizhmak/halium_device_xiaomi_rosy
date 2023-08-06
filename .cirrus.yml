@@ -12,7 +12,8 @@ env:
 
 build_task:
   preparation_script:
-    - git clone $KERNEL_SOURCE
+    - git clone -q $KERNEL_SOURCE
+    - cd $KERNEL_DIR
     - cp *defconfig arch/arm64/configs/
     - mkdir -p debian/source
     - cd debian
