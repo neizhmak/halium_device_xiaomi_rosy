@@ -13,6 +13,7 @@ fi
 file_content_type="application/octet-stream"
 files_to_upload=(
   $PACKAGES_DIR/*
+  $KERNEL_DIR/out/KERNEL_OBJ/*
 )
 
 for fpath in $files_to_upload
