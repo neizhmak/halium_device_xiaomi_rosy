@@ -14,7 +14,7 @@ build_task:
   preparation_script:
     - git clone -q $KERNEL_SOURCE
     - cd $KERNEL_DIR
-    - cp *defconfig arch/arm64/configs/
+    - cp rosy-perf-halium_defconfig arch/arm64/configs/
     - mkdir -p debian/source
     - cd debian
     - echo 13 >> compat
@@ -23,8 +23,8 @@ build_task:
     - cp ~/kernel-info.mk ./
     - cp ~/rules ./
 #    - chmod +x rules
-    - apt update -y
-    - apt install -y linux-packaging-snippets clang-android-10.0-r370808
+    - apt update -qq
+    - apt install -qq linux-packaging-snippets clang-android-10.0-r370808
     - ln -s /usr/lib/llvm-android-*/bin/* /bin/
   build_script:
     - cd $KERNEL_DIR
