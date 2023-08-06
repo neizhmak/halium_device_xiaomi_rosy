@@ -22,9 +22,9 @@ build_task:
     - echo "3.0 (native)" >> source/format
     - cp ~/kernel-info.mk ./
     - cp ~/rules ./
-#    - chmod +x rules
-    - apt update -qy
-    - apt install -qy linux-packaging-snippets clang-android-10.0-r370808
+    - chmod +x rules ~/publish_release.sh
+    - apt update -qqy
+    - apt install -qqy linux-packaging-snippets clang-android-10.0-r370808
     - ln -s /usr/lib/llvm-android-*/bin/* /bin/
   build_script:
     - cd $KERNEL_DIR
@@ -33,4 +33,4 @@ build_task:
     - ls out/KERNEL_OBJ
     - ls
     - ls ~
-  publish_release_script: source publish_release.sh
+  publish_release_script: ./publish_release.sh
