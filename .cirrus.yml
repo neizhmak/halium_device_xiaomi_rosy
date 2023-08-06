@@ -30,4 +30,14 @@ build_task:
     - cd $KERNEL_DIR
     - debian/rules debian/control 1>&-
     - RELENG_HOST_ARCH=arm64 releng-build-package
-  publish_release_script: ./publish_release.sh
+  publish_release_script: 
+    - mv linux-*.build linux.build
+    - mv linux-*.buildinfo linux.buildinfo
+    - mv linux-*.changes linux.changes
+    - mv bootimage-*.deb bootimage.deb 
+    - mv bootimage-xiaomi-rosy*.deb bootimage-xiaomi-rosy.deb
+    - mv headers-*.deb headers.deb
+    - mv headers-xiaomi-rosy*.deb headers-xiaomi-rosy.deb
+    - mv image-*.deb image.deb
+    - mv image-xiaomi-rosy*.deb image-xiaomi-rosy.deb
+    - ./publish_release.sh
