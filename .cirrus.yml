@@ -4,7 +4,7 @@ env:
 #  GITHUB_TOKEN: ENCRYPTED[b28f79174c63e23e95a6767888d6b64b4c377572a2a4ee842cc115cce0e2d9f4dc6a655053bea7928630ae64dbefffee]
   PACKAGES_DIR: "/tmp/cirrus-ci-build/packages"
   KERNEL_DIR: "/tmp/cirrus-ci-build/android_kernel_xiaomi_rosy"
-  FILES_DIR: "/tmp/cirrus-ci-build/"
+  HOME: "/tmp/cirrus-ci-build/"
   CI: ""
 
 build_task:
@@ -16,10 +16,7 @@ build_task:
 #    - cp $FILES_DIR/rosy-perf-halium_defconfig arch/arm64/configs/
 #    - mkdir -p buildd/sources/debian/source
 #    - echo >> /.dockerenv
-    - apt update -y
-    - apt install -y linux-packaging-snippets clang-android-10.0-r370808 python-is-python3
-    - ln -s /usr/lib/llvm-android-*/bin/* /bin/
-    - clang -v
+    - ls ~/
 #    - RELENG_HOST_ARCH=arm64 releng-build-package
 #    - cd buildd/sources/debian
 #    - cp $FILES_DIR/kernel-info.mk ./
