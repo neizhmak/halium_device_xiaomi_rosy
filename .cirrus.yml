@@ -10,7 +10,6 @@ env:
   HOME: "/tmp/cirrus-ci-build/"
   LANG: "C"
   CI: ""
-  q: ">/dev/null"
 
 build_task:
   preparation_script:
@@ -24,11 +23,11 @@ build_task:
     - echo "3.0 (native)" >> source/format
     - cp ~/{kernel-info.mk,rules} ./
     - chmod +x rules ~/publish_release.sh
-    - apt update -y $q
-    - apt install -y linux-packaging-snippets curl $q
+    - apt update -y 1>&-
+    - apt install -y linux-packaging-snippets curl 1>&-
     - sed -i "256iln -s /usr/lib/llvm-android-*/bin/* /bin/" /bin/releng-build-package
   build_script:
     - cd $KERNEL_DIR
-    - debian/rules debian/control $q
-    - RELENG_HOST_ARCH=arm64 releng-build-package $q
+    - debian/rules debian/control 1>&-
+    - RELENG_HOST_ARCH=arm64 releng-build-package 1>&-
   publish_release_script: ./publish_release.sh
