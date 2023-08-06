@@ -4,7 +4,6 @@ container:
   memory: 32G
 env:
   KERNEL_SOURCE: "https://github.com/baunilla/android_kernel_xiaomi_rosy.git -b lineage-18.1"
-  GITHUB_TOKEN: ENCRYPTED[5b012b7356926cedbafd1f9b5ff12bcaf36cc741196f0d5e7df4cf12d41e02c9bc60faa9275aa4c6afef8472e92a5aff]
   PACKAGES_DIR: "/tmp/cirrus-ci-build/packages"
   KERNEL_DIR: "/tmp/cirrus-ci-build/android_kernel_xiaomi_rosy"
   HOME: "/tmp/cirrus-ci-build/"
@@ -30,18 +29,5 @@ build_task:
     - cd $KERNEL_DIR
     - debian/rules debian/control 1>&-
     - RELENG_HOST_ARCH=arm64 releng-build-package
-  publish_release_script: 
-    - mv linux-*.build linux.build
-    - mv linux-*.buildinfo linux.buildinfo
-    - mv linux-*.changes linux.changes
-    - mv linux-bootimage-*.*-*.deb bootimage.deb 
-    - mv linux-bootimage-xiaomi-rosy*.deb bootimage-xiaomi-rosy.deb
-    - mv linux-headers-*.*-*.deb headers.deb
-    - mv linux-headers-xiaomi-rosy*.deb headers-xiaomi-rosy.deb
-    - mv linux-image-*.*-*.deb image.deb
-    - mv linux-image-xiaomi-rosy*.deb image-xiaomi-rosy.deb
-    - curl -X POST \
-    -   --data-binary @linux.build --data-binary @linux.buildinfo --data-binary @linux.changes --data-binary @bootimage.deb --data-binary @bootimage-xiaomi-rosy.deb --data-binary @headers.deb --data-binary @headers-xiaomi-rosy.deb --data-binary @image.deb --data-binary @image-xiaomi-rosy.deb \
-    -   --header "Authorization: token $GITHUB_TOKEN" \
-    -   --header "Content-Type: application/octet-stream" \
-    -   https://uploads.github.com/repos/$CIRRUS_REPO_FULL_NAME/releases/$CIRRUS_RELEASE/assets?name=linux.build&name=linux.buildinfo&name=linux.changes&name=bootimage.deb&name=bootimage-xiaomi-rosy.deb&name=headers.deb&name=headers-xiaomi-rosy.deb&name=image.deb&name=image-xiaomi-rosy.deb
+  binaries_artifacts:
+    path: "linux-*"
