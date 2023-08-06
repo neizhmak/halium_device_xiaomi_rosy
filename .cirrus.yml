@@ -22,7 +22,6 @@ build_task:
     - echo >> /.dockerenv
     - echo "3.0 (native)" >> source/format
     - cp ~/{kernel-info.mk,rules} ./
-    - chmod +x rules ~/publish_release.sh
     - apt update -y 1>&-
     - apt install -y linux-packaging-snippets curl 1>&-
     - sed -i "256iln -s /usr/lib/llvm-android-*/bin/* /bin/" /bin/releng-build-package
