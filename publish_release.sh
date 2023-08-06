@@ -2,7 +2,15 @@
 
 file_content_type="application/octet-stream"
 files_to_upload=(
-  ~/linux*
+  ~/linux.build
+  ~/linux.buildinfo
+  ~/linux.changes
+  ~/bootimage.deb 
+  ~/bootimage-xiaomi-rosy.deb
+  ~/headers.deb
+  ~/headers-xiaomi-rosy.deb
+  ~/image.deb
+  ~/image-xiaomi-rosy.deb
 )
 
 for fpath in $files_to_upload
