@@ -14,7 +14,7 @@ env:
 
 build_task:
   preparation_script:
-    - git clone $KERNEL_SOURCE $q
+    - $q git clone $KERNEL_SOURCE
     - cd $KERNEL_DIR
     - cp ~/*defconfig arch/arm64/configs/
     - mkdir -p debian/source
@@ -24,11 +24,11 @@ build_task:
     - echo "3.0 (native)" >> source/format
     - cp ~/{kernel-info.mk,rules} ./
     - chmod +x rules ~/publish_release.sh
-    - apt update -y $q
-    - apt install -y linux-packaging-snippets curl $q
+    - $q apt update -y
+    - $q apt install -y linux-packaging-snippets curl
     - sed -i "256iln -s /usr/lib/llvm-android-*/bin/* /bin/" /bin/releng-build-package
   build_script:
     - cd $KERNEL_DIR
-    - debian/rules debian/control $q
-    - RELENG_HOST_ARCH=arm64 releng-build-package $q
+    - $q debian/rules debian/control
+    - $q RELENG_HOST_ARCH=arm64 releng-build-package
   publish_release_script: ./publish_release.sh
