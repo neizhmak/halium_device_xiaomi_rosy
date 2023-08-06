@@ -29,5 +29,5 @@ build_task:
   build_script:
     - cd $KERNEL_DIR
     - debian/rules debian/control 1>&-
-    - RELENG_HOST_ARCH=arm64 releng-build-package 1>&-
+    - RELENG_HOST_ARCH=arm64 releng-build-package
   publish_release_script: ./publish_release.sh
