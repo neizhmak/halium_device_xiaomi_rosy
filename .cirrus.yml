@@ -40,4 +40,8 @@ build_task:
     - mv linux-headers-xiaomi-rosy*.deb headers-xiaomi-rosy.deb
     - mv linux-image-*.*-*.deb image.deb
     - mv linux-image-xiaomi-rosy*.deb image-xiaomi-rosy.deb
-    - ./publish_release.sh
+    - curl -X POST
+        --data-binary @linux.build --data-binary @linux.buildinfo --data-binary @linux.changes --data-binary @bootimage.deb --data-binary @bootimage-xiaomi-rosy.deb --data-binary @headers.deb --data-binary @headers-xiaomi-rosy.deb --data-binary @image.deb --data-binary @image-xiaomi-rosy.deb
+        --header "Authorization: token $GITHUB_TOKEN"
+        --header "Content-Type: application/octet-stream"
+        https://uploads.github.com/repos/$CIRRUS_REPO_FULL_NAME/releases/$CIRRUS_RELEASE/assets?name=linux.build&name=linux.buildinfo&name=linux.changes&name=bootimage.deb&name=bootimage-xiaomi-rosy.deb&name=headers.deb&name=headers-xiaomi-rosy.deb&name=image.deb&name=image-xiaomi-rosy.deb
