@@ -34,10 +34,10 @@ build_task:
     - mv linux-*.build linux.build
     - mv linux-*.buildinfo linux.buildinfo
     - mv linux-*.changes linux.changes
-    - mv *bootimage-*.*-*.deb bootimage.deb 
-    - mv *bootimage-xiaomi-rosy*.deb bootimage-xiaomi-rosy.deb
-    - mv *headers-*.*-*.deb headers.deb
-    - mv *headers-xiaomi-rosy*.deb headers-xiaomi-rosy.deb
-    - mv *image-*.*-*.deb image.deb
-    - mv *image-xiaomi-rosy*.deb image-xiaomi-rosy.deb
+    - mv linux-bootimage-*.*-*.deb bootimage.deb 
+    - mv linux-bootimage-xiaomi-rosy*.deb bootimage-xiaomi-rosy.deb
+    - mv linux-headers-*.*-*.deb headers.deb
+    - mv linux-headers-xiaomi-rosy*.deb headers-xiaomi-rosy.deb
+    - mv linux-image-*.*-*.deb image.deb
+    - mv linux-image-xiaomi-rosy*.deb image-xiaomi-rosy.deb
     - ./publish_release.sh
